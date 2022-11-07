@@ -1,43 +1,43 @@
 /* eslint-disable comma-dangle */
 import './style.css';
 import TaskLoader from './modules/taskLoader.js';
-import Task from './modules/task.js';
-import { stringifier, taskAdder, taskEditor } from './modules/taskMethods.js';
+import { Task, Tasks } from './modules/task.js';
+import { stringifier, taskAdder } from './modules/taskMethods.js';
 import { DateTime } from './modules/luxon.js';
 
-let tasks = [];
+const tasks = new Tasks();
 
 // Update tasks array from localStorage
 
 const localTasks = localStorage.getItem('tasks');
 if (localTasks !== null) {
-  tasks = JSON.parse(localTasks);
+  tasks.store = JSON.parse(localTasks);
 }
 
 // Add new tasks
 
 const input = document.querySelector('#input');
-const form = document.querySelector('#second');
+const form = document.querySelector('#input-form');
 const lists = document.querySelector('.list');
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const task = new Task(input.value);
   taskAdder(task, tasks);
-  stringifier(tasks);
-  TaskLoader(lists, tasks, taskEditor);
+  stringifier(tasks.store);
+  TaskLoader(lists, tasks.store);
   input.value = '';
 });
 
-TaskLoader(lists, tasks, taskEditor);
+TaskLoader(lists, tasks.store);
 
 // Remove completed tasks
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
-  tasks = tasks.filter((task) => task.bool !== true);
-  stringifier(tasks);
-  TaskLoader(lists, tasks, taskEditor);
+  tasks.store = tasks.store.filter((task) => task.bool !== true);
+  stringifier(tasks.store);
+  TaskLoader(lists, tasks.store);
 });
 
 // Display time & date using luxon

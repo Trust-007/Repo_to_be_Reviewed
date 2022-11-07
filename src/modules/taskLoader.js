@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
-import { stringifier } from './taskMethods.js';
+import { stringifier, taskEditor } from './taskMethods.js';
 
-function TaskLoader(lists, tasks, taskEditor) {
+function TaskLoader(lists, tasks) {
   // Remove old childNodes before rendering new Nodes
 
   while (lists.hasChildNodes()) {
@@ -26,12 +26,8 @@ function TaskLoader(lists, tasks, taskEditor) {
       tasks[index].bool = !task.bool;
       if (task.bool === true) {
         text.style.textDecoration = 'line-through';
-        form.classList.remove('on');
-        dots.className = 'bi bi-three-dots-vertical';
       } else {
         text.style.textDecoration = 'none';
-        form.classList.remove('on');
-        dots.className = 'bi bi-three-dots-vertical';
       }
       stringifier(tasks);
     });
@@ -71,7 +67,7 @@ function TaskLoader(lists, tasks, taskEditor) {
       if (event.target.id === 'delete') {
         tasks.splice(index, 1);
         stringifier(tasks);
-        TaskLoader(lists, tasks, taskEditor);
+        TaskLoader(lists, tasks);
       }
     });
 
