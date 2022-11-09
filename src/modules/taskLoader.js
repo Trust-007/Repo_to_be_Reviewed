@@ -65,7 +65,8 @@ function TaskLoader(lists, tasks) {
 
     dots.addEventListener('click', (event) => {
       if (event.target.id === 'delete') {
-        tasks.splice(index, 1);
+        // tasks.splice(index, 1);
+        tasks.taskRemover(index);
         stringifier(tasks);
         TaskLoader(lists, tasks);
       }

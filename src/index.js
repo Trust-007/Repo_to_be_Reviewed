@@ -2,7 +2,7 @@
 import './style.css';
 import TaskLoader from './modules/taskLoader.js';
 import { Task, Tasks } from './modules/task.js';
-import { stringifier, taskAdder } from './modules/taskMethods.js';
+import { stringifier } from './modules/taskMethods.js';
 import { DateTime } from './modules/luxon.js';
 
 const tasks = new Tasks();
@@ -23,7 +23,7 @@ const lists = document.querySelector('.list');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const task = new Task(input.value);
-  taskAdder(task, tasks);
+  tasks.appendTask(task);
   stringifier(tasks.store);
   TaskLoader(lists, tasks.store);
   input.value = '';

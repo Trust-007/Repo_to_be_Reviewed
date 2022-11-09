@@ -11,4 +11,12 @@ export class Tasks {
   constructor() {
     this.store = [];
   }
+  appendTask(task) {
+    this.store.push(task);
+    return this.store;
+  }
+  taskRemover(index) {
+    this.store.splice(index, 1);
+    return this.store;
+  }
 }
