@@ -1,8 +1,9 @@
 /* eslint-disable no-use-before-define */
 import { stringifier, taskEditor } from './taskMethods.js';
 
-function TaskLoader(lists, tasks) {
+function TaskLoader(lists, tasksClass) {
   // Remove old childNodes before rendering new Nodes
+  const tasks = tasksClass.store;
 
   while (lists.hasChildNodes()) {
     lists.removeChild(lists.firstChild);
@@ -65,10 +66,9 @@ function TaskLoader(lists, tasks) {
 
     dots.addEventListener('click', (event) => {
       if (event.target.id === 'delete') {
-        // tasks.splice(index, 1);
-        tasks.taskRemover(index);
+        tasksClass.taskRemover(index);
         stringifier(tasks);
-        TaskLoader(lists, tasks);
+        TaskLoader(lists, tasksClass);
       }
     });
 

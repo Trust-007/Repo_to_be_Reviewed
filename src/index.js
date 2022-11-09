@@ -25,11 +25,11 @@ form.addEventListener('submit', (event) => {
   const task = new Task(input.value);
   tasks.appendTask(task);
   stringifier(tasks.store);
-  TaskLoader(lists, tasks.store);
+  TaskLoader(lists, tasks);
   input.value = '';
 });
 
-TaskLoader(lists, tasks.store);
+TaskLoader(lists, tasks);
 
 // Remove completed tasks
 
@@ -37,7 +37,7 @@ const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
   tasks.store = tasks.store.filter((task) => task.bool !== true);
   stringifier(tasks.store);
-  TaskLoader(lists, tasks.store);
+  TaskLoader(lists, tasks);
 });
 
 // Display time & date using luxon

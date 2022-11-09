@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-export class Task {
+class Task {
   constructor(string) {
     this.string = string;
     this.bool = false;
@@ -7,16 +7,22 @@ export class Task {
   }
 }
 
-export class Tasks {
+class Tasks {
   constructor() {
     this.store = [];
   }
+
   appendTask(task) {
+    if (typeof task !== 'object') return 'Wrong input!';
     this.store.push(task);
     return this.store;
   }
+
   taskRemover(index) {
+    if (typeof index !== 'number') return 'Wrong input!';
     this.store.splice(index, 1);
     return this.store;
   }
 }
+
+module.exports = { Tasks, Task };
