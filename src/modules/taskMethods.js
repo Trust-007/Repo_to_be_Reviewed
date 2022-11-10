@@ -1,5 +1,3 @@
-export const taskAdder = (task, tasks) => tasks.push(task);
-
 export const stringifier = (input) => {
   const tasks = JSON.stringify(input);
   localStorage.setItem('tasks', tasks);
