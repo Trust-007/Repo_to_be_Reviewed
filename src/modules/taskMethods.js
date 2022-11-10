@@ -1,11 +1,12 @@
-export const stringifier = (input) => {
-  const tasks = JSON.stringify(input);
-  localStorage.setItem('tasks', tasks);
-};
-
-export const taskEditor = (list, index, tasks) => {
-  const text = list.value;
-  tasks[index].string = text;
-  stringifier(tasks);
+const check = (tasks, task, index) => {
+  tasks[index].bool = !task.bool;
   return tasks;
 };
+
+const removeAllChecked = (tasks) => {
+  const newTasks = tasks;
+  newTasks.store = tasks.store.filter((task) => task.bool !== true);
+  return newTasks.store;
+};
+
+module.exports = { check, removeAllChecked };

@@ -23,6 +23,11 @@ class Tasks {
     this.store.splice(index, 1);
     return this.store;
   }
+
+  taskEditor(input, index) {
+    this.store[index].string = input.value;
+    return this.store;
+  }
 }
 
 module.exports = { Tasks, Task };

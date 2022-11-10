@@ -1,9 +1,11 @@
 /* eslint-disable comma-dangle */
 import './style.css';
-import TaskLoader from './modules/taskLoader.js';
-import { Task, Tasks } from './modules/task.js';
-import { stringifier } from './modules/taskMethods.js';
-import { DateTime } from './modules/luxon.js';
+
+const { TaskLoader } = require('./modules/taskLoader.js');
+const { Task, Tasks } = require('./modules/task.js');
+const { removeAllChecked } = require('./modules/taskMethods.js');
+const { stringifier } = require('./modules/stringifier.js');
+const { DateTime } = require('./modules/luxon.js');
 
 const tasks = new Tasks();
 
@@ -35,7 +37,7 @@ TaskLoader(lists, tasks);
 
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
-  tasks.store = tasks.store.filter((task) => task.bool !== true);
+  removeAllChecked(tasks);
   stringifier(tasks.store);
   TaskLoader(lists, tasks);
 });

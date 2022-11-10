@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
-import { stringifier, taskEditor } from './taskMethods.js';
+const { stringifier } = require('./stringifier.js');
+const { check } = require('./taskMethods.js');
 
 function TaskLoader(lists, tasksClass) {
   // Remove old childNodes before rendering new Nodes
@@ -24,7 +25,7 @@ function TaskLoader(lists, tasksClass) {
     // Add event listener for checkbox
 
     checkBox.addEventListener('change', () => {
-      tasks[index].bool = !task.bool;
+      check(tasks, task, index, text);
       if (task.bool === true) {
         text.style.textDecoration = 'line-through';
       } else {
@@ -43,7 +44,8 @@ function TaskLoader(lists, tasksClass) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       text.blur();
-      taskEditor(text, index, tasks);
+      tasksClass.taskEditor(text, index);
+      stringifier(tasks);
       dots.className = 'bi bi-three-dots-vertical';
       form.classList.remove('on');
       if (task.bool === true) text.style.textDecoration = 'line-through';
@@ -87,4 +89,4 @@ function TaskLoader(lists, tasksClass) {
   });
 }
 
-export default TaskLoader;
+module.exports = { TaskLoader };
