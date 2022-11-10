@@ -1,4 +1,6 @@
-export const stringifier = (input) => {
+const stringifier = (input) => {
   const tasks = JSON.stringify(input);
-  localStorage.setItem('tasks', tasks);
+  localStorage.setItem("tasks", tasks);
 };
+
+module.exports = { stringifier };

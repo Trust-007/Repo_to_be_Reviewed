@@ -1,6 +1,6 @@
 /* eslint-disable comma-dangle */
 import './style.css';
-import TaskLoader from './modules/taskLoader.js';
+const {TaskLoader} = require('./modules/taskLoader');
 import { Task, Tasks } from './modules/task.js';
 import { stringifier } from './modules/taskMethods.js';
 import { DateTime } from './modules/luxon.js';
