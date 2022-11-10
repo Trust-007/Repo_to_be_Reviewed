@@ -3,7 +3,7 @@ import { stringifier, taskEditor } from './taskMethods.js';
 
 function TaskLoader(lists, tasksClass) {
   // Remove old childNodes before rendering new Nodes
-  const tasks = tasksClass.store;
+  let tasks = tasksClass.store;
 
   while (lists.hasChildNodes()) {
     lists.removeChild(lists.firstChild);
@@ -43,7 +43,8 @@ function TaskLoader(lists, tasksClass) {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       text.blur();
-      taskEditor(text, index, tasks);
+      tasksClass.taskEditor(text, index);
+      stringifier(tasks);
       dots.className = 'bi bi-three-dots-vertical';
       form.classList.remove('on');
       if (task.bool === true) text.style.textDecoration = 'line-through';

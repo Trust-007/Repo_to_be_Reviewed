@@ -25,3 +25,14 @@ describe('add & remove', function () {
     expect(newTasks.taskRemover(test2)).toBe('Wrong input!');
   });
 });
+
+describe('edit & clear', function () {
+  it('edit task', function () {
+    const newTasks = new Tasks();
+    newTasks.appendTask(new Task('first'));
+    const input = { value: 'first task' };
+    expect(JSON.stringify(newTasks.taskEditor(input, 0))).toBe(
+      '[{"string":"first task","bool":false,"index":null}]'
+    );
+  });
+});
