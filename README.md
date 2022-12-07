@@ -22,7 +22,7 @@ In this project I built a simple HTML list of To Do tasks using webpack and serv
 
 ## Live Demo
 
-[live]()
+[live](https://trust-007.github.io/Repo_to_be_Reviewed/dist/)
 
 ### Setup
 
